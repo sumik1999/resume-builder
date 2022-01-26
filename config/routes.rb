@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post  'register' => 'register#create'
   resources :profiles , only: [:update]
   resources :educations , only: [:new]
+  resources :experiences, only: [:new]
 end
