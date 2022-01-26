@@ -11,12 +11,14 @@ class RegisterController < ApplicationController
         
             @user = User.new(user_params)
             @user.profile = Profile.new
+            
             @user.save
 
             
             if @user.save
             
                 @user.profile.educations.create
+                @user.profile.experiences.create
                 user =  User.find_by(email: params[:register][:email].downcase)
                 log_in(user)
 
