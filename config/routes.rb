@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root   'home#index'
+  get    'experiences/:id/projects/new'   => 'projects#new'
   get    'edit'    => 'home#edit'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
