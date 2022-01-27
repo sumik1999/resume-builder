@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get    'user/:id' => 'publicshow#share'
   
   get   'register' => 'register#register'
   post  'register' => 'register#create'
