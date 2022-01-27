@@ -2,6 +2,11 @@
 
 <main class="py-10 max-w-7xl mx-auto px-4 sm:px-8">
     <%= form_for(@profile, builder: TailwindInputBuilder) do |f| %>
+
+        <div class="flex gap-8 items-center justify-between mb-5">
+            <%= render 'shared/input/buttons/previewbutton', label: "Preview", href: "/user/#{@profile.user.id}" , color:"green"%>
+            <%= render partial: 'shared/input/buttons/copytoclipboard', locals: {id:current_user.id,host:request.host} %>
+        </div>
         <div class="flex justify-end items-center w-full mb-4">
             <div>
                 <%= f.submit "Save", class: "flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-green-200" %><br/>

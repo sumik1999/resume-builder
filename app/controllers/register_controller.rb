@@ -28,8 +28,7 @@ class RegisterController < ApplicationController
             else
                 if @user.errors.any?
                     @user.errors.each do |attribute, message|
-                        flash[:danger] = attribute
-                        flash[:danger] = message
+                        flash[:danger] = "#{attribute} "+message
                     end
                 end
                 render('register')
