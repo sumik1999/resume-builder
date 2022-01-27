@@ -13,6 +13,7 @@
             </div>
         </div>
 
+        <%= f.file_field :avatar %>
         <%= render 'shared/edit_section', title: "Profile details" do %>
             <%= f.text_field :name, value: @profile.name || current_user.name, placeholder: "Name" %><br/>
             <div class="flex items-center my-4">

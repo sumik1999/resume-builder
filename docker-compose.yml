@@ -16,11 +16,8 @@ services:
       - /tmp/resume-builder/tmp:/app/tmp
     ports:
       - "3000:3000"
-    environment:
-      - DB_HOST=db
-      - DB_NAME=resume_builder
-      - DB_USER=postgres
-      - DB_PASS=changeme
+    env_file:
+      - .env
     depends_on:
       - db
   
