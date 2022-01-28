@@ -13,13 +13,18 @@
             </div>
         </div>
 
-        <%= f.file_field :avatar %>
         <%= render 'shared/edit_section', title: "Profile details" do %>
             <%= f.text_field :name, value: @profile.name || current_user.name, placeholder: "Name" %><br/>
             <div class="flex items-center my-4">
-                <%= image_tag gravatar_url_for(current_user), 
-                    id: "image-preview", style:"max-width:200px"
-                %>
+                <% if @profile.avatar.attached?%>
+                    <%= cl_image_tag @profile.avatar.key, :width=>150, :crop=>"fill", :id=>"image-preview", :style=>"max-width"%>
+                <% else %>
+                    <%= image_tag gravatar_url_for(current_user), 
+                        id: "image-preview", style:"max-width:200px"
+                    %>
+                <% end %>
+
+                <label class="py-2 px-4 flex justify-start items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4" for="form_ input">+ Upload Image<%= f.file_field :avatar ,:class=>"hidden",:id=>"form_input"%></label>
             </div>
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
