@@ -24,7 +24,7 @@
                     %>
                 <% end %>
 
-                <label class="ml-4 py-2 px-4 flex justify-start items-center bg-purple-700 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4" for="form_ input">+ Upload Image<%= f.file_field :avatar ,:class=>"hidden",:id=>"form_input"%></label>
+               <label class="ml-4 py-2 px-4 flex justify-start items-center bg-purple-700 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4 btn" for="form_input">+ Upload Image</label><%= f.file_field :avatar ,:class=>"hidden",:id=>"form_input" %>
             </div>
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
