@@ -15,16 +15,10 @@
 
         <%= render 'shared/edit_section', title: "Profile details" do %>
             <%= f.text_field :name, value: @profile.name || current_user.name, placeholder: "Name" %><br/>
-            <div class="flex items-center my-4 ">
-                <% if @profile.avatar.attached?%>
-                    <%= cl_image_tag @profile.avatar.key, :width=>150, :crop=>"fill", :id=>"image-preview", :style=>"max-width"%>
-                <% else %>
-                    <%= image_tag gravatar_url_for(current_user), 
-                        id: "image-preview", style:"max-width:200px"
-                    %>
-                <% end %>
-
-               <label class="ml-4 py-2 px-4 flex justify-start items-center bg-purple-700 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4 btn" for="form_input">+ Upload Image</label><%= f.file_field :avatar ,:class=>"hidden",:id=>"form_input" %>
+            <div class="flex items-center my-4 ">                
+               <label class=" py-2 px-4 flex justify-start items-center bg-purple-700 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4 btn" for="form_input">+ Upload Image</label>
+               <%= f.file_field :avatar ,:class=>"hidden",:type=>"file",:id=>"form_input",:onchange=>"previewFile()" %>
+               <img id="image" width="" height="" src="" alt="">
             </div>
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
@@ -68,4 +62,25 @@
         
     <% end %>
 
+
 </main>
+<script>
+function previewFile() 
+{
+  var preview = document.querySelector('img');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.onloadend = function () {
+    preview.src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+    preview.width = "100"
+    preview.height="100"
+  } else {
+    preview.src = "";
+  }
+}
+</script>
