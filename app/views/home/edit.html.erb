@@ -15,7 +15,7 @@
 
         <%= render 'shared/edit_section', title: "Profile details" do %>
             <%= f.text_field :name, value: @profile.name || current_user.name, placeholder: "Name" %><br/>
-            <div class="flex items-center my-4">
+            <div class="flex items-center my-4 ">
                 <% if @profile.avatar.attached?%>
                     <%= cl_image_tag @profile.avatar.key, :width=>150, :crop=>"fill", :id=>"image-preview", :style=>"max-width"%>
                 <% else %>
@@ -24,7 +24,7 @@
                     %>
                 <% end %>
 
-                <label class="ml-4 py-2 px-4 flex justify-start items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4" for="form_ input">+ Upload Image<%= f.file_field :avatar ,:class=>"hidden",:id=>"form_input"%></label>
+                <label class="ml-4 py-2 px-4 flex justify-start items-center bg-purple-700 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg mr-4" for="form_ input">+ Upload Image<%= f.file_field :avatar ,:class=>"hidden",:id=>"form_input"%></label>
             </div>
             <%= f.text_field :job_title, value: @profile.job_title, placeholder: "Job title" %><br/>
             <%= f.text_field :total_experience, value: @profile.total_experience, placeholder: "Total experience" %><br/>
@@ -48,11 +48,11 @@
         <%= render 'shared/edit_section', title: "Experience" do %>
             <%= f.fields_for :experiences do |experience| %>
                 <%= render 'shared/input/experience', experience: experience %>
-                         <h3> Projects: </h3>
+                         <h3 class="text-grey font-semibold  mb-2 ml-2"> Projects: </h3>
                          <%= experience.fields_for :projects do |project| %>
-                            <%= render 'shared/input/project', project: project  %>
+                            <%= render 'shared/input/project', project: project %>
                         <% end %> 
-                    <%= render 'shared/input/buttons/add', label: "+ Add Project", path: "/experiences/#{experience.object.id}/projects/new"  %>
+                    <%= render 'shared/input/buttons/addproject', label: "+ Add Project", path: "/experiences/#{experience.object.id}/projects/new"  %>
                 
             <% end %>
             <br><br />
